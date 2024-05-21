@@ -10,6 +10,9 @@ import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRouter } from "next/navigation";
+import { getUserInfo } from "@/services/authServices";
+import { TAuthUser } from "@/types";
+import Link from "next/link";
 
 const menuStyles = {
   paper: {
@@ -39,6 +42,8 @@ const menuStyles = {
 };
 
 export default function AccountMenu() {
+  const user = getUserInfo() as TAuthUser;
+  const userRole = user?.role;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
@@ -98,10 +103,12 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar sx={{ background: "transparent", color: "primary.main" }} />
-          Profile
-        </MenuItem>
+        <Link href={`/dashboard/${userRole}/profile`}>
+          <MenuItem>
+            <Avatar sx={{ background: "transparent", color: "primary.main" }} />
+            Profile
+          </MenuItem>
+        </Link>
 
         <Divider />
 

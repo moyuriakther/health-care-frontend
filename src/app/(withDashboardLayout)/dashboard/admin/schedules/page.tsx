@@ -2,7 +2,10 @@
 import { Box, Button, IconButton } from "@mui/material";
 import ScheduleModal from "./component/ScheduleModal";
 import { useEffect, useState } from "react";
-import { useGetAllSchedulesQuery } from "@/redux/api/schedulesApi";
+import {
+  useDeleteScheduleMutation,
+  useGetAllSchedulesQuery,
+} from "@/redux/api/schedulesApi";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { dateFormatter } from "@/utils/dateFormatter";
@@ -12,8 +15,9 @@ import { ISchedule } from "@/types/schedule";
 const SchedulesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [allSchedules, setAllSchedules] = useState<any>([]);
-  const { data, isLoading } = useGetAllSchedulesQuery("");
+  const { data, isLoading } = useGetAllSchedulesQuery({});
   const schedules = data?.schedules;
+  const [deleteSchedule, { isSuccess }] = useDeleteScheduleMutation();
 
   useEffect(() => {
     const updatedSchedules = schedules?.map((schedule: ISchedule) => {
@@ -41,7 +45,11 @@ const SchedulesPage = () => {
       align: "center",
       renderCell: ({ row }) => {
         return (
-          <IconButton aria-label="delete" size="large">
+          <IconButton
+            aria-label="delete"
+            size="large"
+            onClick={() => deleteSchedule(row.id)}
+          >
             <DeleteIcon sx={{ color: "secondary.dark" }} />
           </IconButton>
         );
@@ -59,7 +67,7 @@ const SchedulesPage = () => {
       </Box>
       {!isLoading ? (
         <Box my={2}>
-          <DataGrid rows={allSchedules ?? []} columns={columns} />
+          <DataGrid rows={allSchedules ?? []} columns={columns} pagination />
         </Box>
       ) : (
         <h1>Loading</h1>

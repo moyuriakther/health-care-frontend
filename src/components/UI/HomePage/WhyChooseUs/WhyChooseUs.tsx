@@ -203,7 +203,7 @@ const WhyChooseUs = () => {
           <Grid item md={6} sx={{ display: "flex" }}>
             <Box sx={{ justifyContent: "center", margin: "0 auto" }}>
               <Image
-                src={ChooseUsImg}
+                src={ChooseUsImg.src}
                 alt="ChooseUsImg"
                 height={500}
                 width={380}

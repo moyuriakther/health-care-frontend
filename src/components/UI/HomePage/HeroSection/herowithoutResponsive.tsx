@@ -1,6 +1,7 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import assets from "@/assets";
+import ImageComponent from "../../Image/ImageComponent";
 
 const HeroSection = () => {
   return (
@@ -15,6 +16,7 @@ const HeroSection = () => {
           }}
         >
           <Image src={assets.svgs.grid} alt="grid" />
+          {/* <ImageComponent src={assets.svgs.grid} alt="grid" /> */}
         </Box>
         <Typography variant="h3" component="h1" fontWeight={600}>
           Healthier Heart

@@ -12,6 +12,7 @@ type TInputProps = {
   fullWidth?: boolean;
   sx?: SxProps;
   required?: boolean;
+  setSelectedDate?: any;
 };
 
 const PHDatePicker = ({
@@ -21,6 +22,7 @@ const PHDatePicker = ({
   fullWidth = true,
   sx,
   required,
+  setSelectedDate,
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -37,7 +39,10 @@ const PHDatePicker = ({
               label={label}
               {...field}
               value={value || Date.now()}
-              onChange={(date) => onChange(date)}
+              onChange={(date) => {
+                onChange(date);
+                if (setSelectedDate) setSelectedDate(date);
+              }}
               slotProps={{
                 textField: {
                   required: required,

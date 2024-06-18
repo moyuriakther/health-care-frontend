@@ -108,7 +108,7 @@ const ChangePassword = () => {
           </Grid>
 
           <Button fullWidth={true} sx={{ margin: "10px 0px" }} type="submit">
-            Login
+            Submit
           </Button>
         </PHForm>
       </Box>

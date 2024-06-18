@@ -34,6 +34,7 @@ const defaultValues = {
 
 const DoctorModal = ({ open, setOpen }: TProps) => {
   const [createDoctor, { isError, isLoading }] = useCreateDoctorMutation();
+  
 
   const handleSubmit = async (values: FieldValues) => {
     // console.log(values);

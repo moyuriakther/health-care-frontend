@@ -1,3 +1,4 @@
+"use client";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import HowItWorksImg from "@/assets/how-it-works-img.png";
 import Image from "next/image";

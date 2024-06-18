@@ -1,3 +1,30 @@
+export interface Doctor {
+  id: string;
+  email: string;
+  name: string;
+  profilePhoto: string;
+  contactNumber: string;
+  address: string;
+  registrationNumber: string;
+  experience: number;
+  gender: "male" | "female" | "other";
+  appointmentFee: number;
+  qualification: string;
+  currentWorkingPlace: string;
+  designation: string;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+  averageRating: number;
+  review: any[];
+  doctorSpecialities: DoctorSpecialty[];
+}
+export interface DoctorSpecialty {
+  specialtiesId: string;
+  doctorId: string;
+  specialities: any;
+}
+
 export interface IDoctor {
   id: string;
   name: string;

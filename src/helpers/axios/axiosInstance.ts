@@ -30,6 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   // @ts-ignore
   function (response) {
+    // console.log(response);
     const responseObject: TResponseSuccess = {
       data: response?.data?.data,
       meta: response?.data?.meta,
@@ -44,9 +45,10 @@ instance.interceptors.response.use(
       const response = await getNewAccessToken();
       // console.log(response.data.accessToken);
       const accessToken = response.data.accessToken;
+      // console.log({ accessToken });
       config.headers["Authorization"] = accessToken;
       setToLocalStorage(authKey, accessToken);
-      setAccessToken(authKey);
+      setAccessToken(accessToken);
       return instance(config);
     } else {
       const responseObject: TResponseError = {

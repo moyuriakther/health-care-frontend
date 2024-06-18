@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { getUserInfo } from "@/services/authServices";
 import { TAuthUser } from "@/types";
 import Link from "next/link";
+import { deleteCookies } from "@/services/actions/deleteCookies";
+import { authKey } from "@/constants/authkey";
 
 const menuStyles = {
   paper: {
@@ -57,6 +59,8 @@ export default function AccountMenu() {
   const handleLogout = () => {
     setAnchorEl(null);
     localStorage.removeItem("accessToken");
+    deleteCookies([authKey, "refreshToken"]);
+
     router.push("/login");
   };
 

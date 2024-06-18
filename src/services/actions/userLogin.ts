@@ -14,11 +14,14 @@ export const userLogin = async (formData: FieldValues) => {
     credentials: "include",
   });
   const userInfo = await res.json();
-  // console.log(userInfo?.data?.accessToken);
+  console.log(userInfo?.data);
+
+  const passwordChangeRequired = userInfo.data.needPasswordChange;
 
   if (userInfo?.data?.accessToken) {
     setAccessToken(userInfo?.data?.accessToken, {
       redirect: "/dashboard",
+      passwordChangeRequired,
     });
   }
   return userInfo;

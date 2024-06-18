@@ -18,6 +18,8 @@ export const getUserInfo = () => {
     return {
       ...decodedData,
     };
+  } else {
+    return "";
   }
 };
 export const isLoggedIn = () => {
